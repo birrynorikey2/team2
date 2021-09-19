@@ -75,4 +75,18 @@ def test_retirement_age14():
     assert a == (67, 0)
 
 
+def test_retirement_age_year_is_not_int():
+    with pytest.raises(Exception):
+        get_retirement_age("Invalid year", 1);
 
+def test_retirement_age_month_is_not_int():
+    with pytest.raises(Exception):
+        get_retirement_age(2000, "Invalid month");
+
+def test_retirement_age_invalid_year():
+    with pytest.raises(Exception):
+        get_retirement_age(-1, 1);
+
+def test_retirement_age_invalid_year():
+    with pytest.raises(Exception):
+        get_retirement_age(2000, -1);
