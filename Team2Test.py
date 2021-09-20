@@ -74,7 +74,6 @@ def test_retirement_age14():
     a = get_retirement_age(1967, 12)
     assert a == (67, 0)
 
-
 def test_retirement_age_year_is_not_int():
     with pytest.raises(Exception):
         get_retirement_age("Invalid year", 1);
@@ -83,10 +82,19 @@ def test_retirement_age_month_is_not_int():
     with pytest.raises(Exception):
         get_retirement_age(2000, "Invalid month");
 
-def test_retirement_age_invalid_year():
+def test_retirement_age_invalid_year_lower_bound():
     with pytest.raises(Exception):
-        get_retirement_age(-1, 1);
+        get_retirement_age(1899, 1);
 
-def test_retirement_age_invalid_year():
+def test_retirement_age_invalid_year_upper_bound():
     with pytest.raises(Exception):
-        get_retirement_age(2000, -1);
+        get_retirement_age(3000, 1);
+
+def test_retirement_age_invalid_month_lower_bound():
+    with pytest.raises(Exception):
+        get_retirement_age(2000, 0);
+
+def test_retirement_age_invalid_month_upper_bound():
+    with pytest.raises(Exception):
+        get_retirement_age(2000, 13);
+    
